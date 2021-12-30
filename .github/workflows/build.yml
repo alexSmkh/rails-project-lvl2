@@ -16,6 +16,12 @@ jobs:
         with:
           ruby-version: '3.0.3'
 
+      - name: Install bundler
+        run: gem install bundler
+      
+      - name: Install dependencies
+        run: make install
+        
       - name: Linter
         run: make lint
 
