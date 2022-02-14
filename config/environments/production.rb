@@ -119,4 +119,7 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  # Devise
+  config.action_mailer.default_url_options = { host: 'https://ancient-forest-74768.herokuapp.com/', port: 5000 }
 end
