@@ -1,0 +1,15 @@
+= content_for :form_content do
+  h2.fs-2.text.fw-bolder.text-center.mb-4
+    | Forgot your password?
+  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+    = f.error_notification
+    .form-inputs.mb-2
+      = f.input :email,
+        required: true,
+        autofocus: true,
+        input_html: { autocomplete: "email" }
+    .form-actions.mb-2
+      = f.button :submit, "Send me reset password instructions", class: "btn btn-primary px-5"
+  = render "devise/shared/links"
+= render "devise/shared/form_wrapper"
+

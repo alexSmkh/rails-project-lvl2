@@ -98,9 +98,6 @@ GEM
       hpricot
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
-    inline_svg (1.8.0)
-      activesupport (>= 3.0)
-      nokogiri (>= 1.6)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -213,6 +210,9 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    simple_form (5.1.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
@@ -270,7 +270,6 @@ DEPENDENCIES
   devise
   faker
   html2slim (~> 0.2.0)
-  inline_svg (~> 1.8)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   minitest-power_assert
@@ -283,6 +282,7 @@ DEPENDENCIES
   rubocop-rails
   sass-rails (>= 6)
   selenium-webdriver
+  simple_form (~> 5.1)
   slim_lint
   spring
   sqlite3 (~> 1.4)
