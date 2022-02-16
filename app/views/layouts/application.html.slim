@@ -2,7 +2,7 @@ doctype html
 html
   head
     title
-      | RailsProjectLvl2
+      | Blog
     meta[name="viewport" content="width=device-width,initial-scale=1"]
     = csrf_meta_tags
     = csp_meta_tag
@@ -10,22 +10,26 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
   
-  body.d-flex.flex-column.vh-100.vsc-initialized
+  body.d-flex.flex-column.vh-100
     - if flash[:notice].present?
         div.alert.alert-primary
           = notice
 
     - if flash[:alert].present?
-      div.alert.alert-danger
-        = alert
+        div.alert.alert-danger
+          = alert
 
-    header.border-bottom.shadow
+    header.border-bottom.shadow-sm
       nav.d-flex.justify-content-between.align-items-center.py-2.px-4
-        = link_to root_path, class: 'fs-3 text fw-bold text-decoration-none' do
-          i.fa-solid.fa-house.text-dark
+        = link_to root_path, class: 'fs-4 link-secondary' do
+          i.fa-solid.fa-house
 
         div
           - if user_signed_in?
+            = link_to new_post_path, class: 'btn btn-light me-2 text-primary' do
+              i.fa-solid.fa-plus.me-2
+              span Create Post
+
             = link_to destroy_user_session_path, method: :delete, class: 'btn btn-outline-secondary', data: { confirm: 'Are you sure?' } do
               i.fa-solid.fa-arrow-right-from-bracket.me-2 
               span Logout
@@ -43,4 +47,4 @@ html
     footer.footer.mt-auto.py-3.bg-light.border-top.shadow
       div.container.text-center
         = link_to 'https://github.com/alexSmkh' do
-          i.fa-brands.fa-github.fa-xl.text-dark
+          i.fa-brands.fa-github.fa-xl.text-secondary

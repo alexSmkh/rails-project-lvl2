@@ -1,0 +1,24 @@
+.p-4.mb-4.border.rounded-3.shadow-sm
+  .d-flex.justify-content-between.align-items-center.mb-3
+    h2.fw-bolder.fs-2.align-top.mb-0
+      = link_to post.title.capitalize, post_path(post), class: 'link-primary text-decoration-none'
+    div
+      i.fa-regular.fa-calendar.me-2.text-primary
+      span.text-secondary.fst-italic.fw-lighter
+        = time_ago_in_words(post.created_at)
+        |  ago
+  p
+    = post.body.truncate(500)
+  .d-flex
+    div
+      i.fa-regular.fa-heart.text-danger.me-1
+      span.text-secondary.fw-lighter 2
+    .ms-2.ms-sm-4
+        i.fa-regular.fa-comments.text-warning.me-1
+        span.text-secondary.fw-lighter 21
+    .ms-2.ms-sm-4
+      i.fa-solid.fa-cat.me-1
+      span.text-secondary.fw-lighter
+        = post.creator.email
+
+    

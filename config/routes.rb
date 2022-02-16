@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'users/index'
+  resources :posts
   devise_for :users
-  root to: 'users#index'
+  root to: 'posts#index'
 end
