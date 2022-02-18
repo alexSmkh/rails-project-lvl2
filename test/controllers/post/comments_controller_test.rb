@@ -1,23 +1,27 @@
-require "test_helper"
+# frozen_string_literal: true
 
-class Post::CommentsControllerTest < ActionDispatch::IntegrationTest
-  test "should get create" do
-    get post_comments_create_url
-    assert_response :success
-  end
+require 'test_helper'
 
-  test "should get edit" do
-    get post_comments_edit_url
-    assert_response :success
-  end
+module Post
+  class CommentsControllerTest < ActionDispatch::IntegrationTest
+    test 'should get create' do
+      get post_comments_create_url
+      assert_response :success
+    end
 
-  test "should get update" do
-    get post_comments_update_url
-    assert_response :success
-  end
+    test 'should get edit' do
+      get post_comments_edit_url
+      assert_response :success
+    end
 
-  test "should get destroy" do
-    get post_comments_destroy_url
-    assert_response :success
+    test 'should get update' do
+      get post_comments_update_url
+      assert_response :success
+    end
+
+    test 'should get destroy' do
+      get post_comments_destroy_url
+      assert_response :success
+    end
   end
 end
