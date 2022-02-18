@@ -1,0 +1,25 @@
+.ps-3.mb-2.border-start
+  div
+    .d-flex.justify-content-between
+      div
+        i.fa-solid.fa-cat.me-1
+        span.fs-6.text
+          = comment.creator.email
+      div
+        - if author_of(comment)
+          = link_to edit_comment_path(comment) do
+            i.fa-solid.fa-pen.fa-xs.link-secondary.mx-2
+          = link_to comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } do
+            i.fa-regular.fa-trash-can.fa-xs.link-secondary
+    p.text-secondary.fst-italic.fw-lighter.fs-8.
+      = time_ago_in_words(comment.created_at)
+      |  ago
+  
+  p.pe-2
+    = comment.content
+  
+  - if user_signed_in?
+    = render 'posts/comments/reply', comment: comment, post: post
+
+  .ps-2
+    = render 'posts/comments/children', post: post, comment: comment

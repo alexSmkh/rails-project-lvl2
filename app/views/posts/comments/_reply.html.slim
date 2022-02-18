@@ -1,0 +1,7 @@
+.mb-2
+  p.mb-0
+    a.text-decoration-none.text-dark href="#reply-form-#{comment.id}" data-bs-toggle="collapse" aria-expanded="false" aria-controls="reply-form"
+      i.fa-solid.fa-reply.fa-xs
+      |  Reply
+  div.collapse.pt-2 id="reply-form-#{comment.id}"
+    = render 'posts/comments/form', model: PostComment.new, path: post_comments_path(post), parent_id: comment.id

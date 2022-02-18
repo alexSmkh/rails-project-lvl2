@@ -1,0 +1,7 @@
+= simple_form_for model, url: path do |f|
+  = f.error_notification
+  .form-inputs.mb-2
+    = f.input :content, label: false
+    = f.hidden_field :parent_id, value: parent_id
+  .form-actions.mb-2
+    = f.button :submit, 'Comment', class: 'btn btn-primary px-5'

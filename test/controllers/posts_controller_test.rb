@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
+comment
 require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest

@@ -62,6 +62,8 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    ancestry (4.1.0)
+      activerecord (>= 5.2.6)
     ast (2.4.2)
     bcrypt (3.1.16)
     bindex (0.8.1)
@@ -98,9 +100,6 @@ GEM
       hpricot
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
-    inline_svg (1.8.0)
-      activesupport (>= 3.0)
-      nokogiri (>= 1.6)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -267,13 +266,13 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  ancestry (~> 4.1)
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
   devise
   faker
   html2slim (~> 0.2.0)
-  inline_svg (~> 1.8)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   minitest-power_assert
