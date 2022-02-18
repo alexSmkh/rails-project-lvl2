@@ -78,3 +78,5 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'simple_form', '~> 5.1'
 
 gem 'ancestry', '~> 4.1'
+
+gem "prettier", "~> 2.0", :group => :development
