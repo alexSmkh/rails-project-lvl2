@@ -1,0 +1,4 @@
+h1.my-4
+  | Edit comment
+
+= render 'posts/comments/form', model: @comment, path: comment_path(@comment), parent_id: @comment.parent_id, submit_value: 'Update comment'  

@@ -43,7 +43,7 @@
   
   - if user_signed_in?
     .mb-4
-      = render 'posts/comments/form', model: @comment, path: post_comments_path(@post), parent_id: nil
+      = render 'posts/comments/form', model: @comment, path: post_comments_path(@post), parent_id: nil, submit_value: 'Comment'
   - else
     .mb-4
       = link_to 'Login', new_user_session_path

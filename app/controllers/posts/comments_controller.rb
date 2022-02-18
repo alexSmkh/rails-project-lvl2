@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class Post::CommentsController < ApplicationController
+class Posts::CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: %i[create]
   before_action :set_comment, only: %i[edit update destroy]
 
   def create
+    @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     @comment.creator = current_user
     respond_to do |format|
@@ -19,10 +19,12 @@ class Post::CommentsController < ApplicationController
     end
   end
 
+  def edit; end
+
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to post_path(@post), notice: 'Comment was successfully updated' }
+        format.html { redirect_to post_path(@comment.post), notice: 'Comment was successfully updated' }
       else
         format.html { render :edit }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -37,10 +39,6 @@ class Post::CommentsController < ApplicationController
   end
 
   private
-
-  def set_post
-    @post = Post.find(params[:post_id])
-  end
 
   def set_comment
     @comment = PostComment.find(params[:id])
