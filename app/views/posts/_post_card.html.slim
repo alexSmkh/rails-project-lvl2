@@ -10,9 +10,7 @@
   p
     = post.body.truncate(500)
   .d-flex
-    div
-      i.fa-regular.fa-heart.text-danger.me-1
-      span.text-secondary.fw-lighter 2
+    = render 'posts/likes', post: post
     .ms-2.ms-sm-4
         i.fa-regular.fa-comments.text-warning.me-1
         span.text-secondary.fw-lighter

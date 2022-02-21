@@ -1,0 +1,10 @@
+- user_like = get_user_post_like(post)
+div
+  - if user_like
+    = link_to like_path(user_like), method: :delete do
+      i.fa-solid.fa-heart.text-danger.me-1
+  - else
+    = link_to post_likes_path(post), method: :post do 
+      i.fa-regular.fa-heart.text-danger.me-1
+  span.text-secondary.fw-lighter
+    = post.likes.count
