@@ -8,6 +8,7 @@ class Posts::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     @comment.creator = current_user
+
     respond_to do |format|
       if @comment.save
         format.html { redirect_to post_path(@post), notice: 'Comment was successfully created.' }
@@ -45,6 +46,6 @@ class Posts::CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:post_comment).permit(:content, :post_id, :ancestry, :parent_id)
+    params.require(:post_comment).permit(:content, :post_id, :parent_id)
   end
 end

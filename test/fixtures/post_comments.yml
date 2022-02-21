@@ -1,11 +1,22 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   content: MyText
-  user: one
-  post: one
+  user_id: 1
+  post_id: 1
+  ancestry:
 
 two:
+  id: 2
   content: MyText
-  user: two
-  post: two
+  user_id: 1
+  post_id: 1
+  ancestry: 
+
+three:
+  id: 3
+  content: MyText
+  user_id: 1
+  post_id: 1
+  ancestry: 1
