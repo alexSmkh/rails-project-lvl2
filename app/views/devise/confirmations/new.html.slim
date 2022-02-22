@@ -1,6 +1,6 @@
 = content_for :form_content do
   h2.fs-2.text.fw-bolder.text-center.mb-4
-    | Resend confirmation instructions
+    = I18n.t('devise.unlocks.resend_instructions')
   = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
     = f.error_notification
     = f.full_error :confirmation_token
@@ -11,6 +11,6 @@
         value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
         input_html: { autocomplete: "email" }
     .form-actions.mb-2
-      = f.button :submit, "Resend confirmation instructions", class: 'btn btn-primary px-5'
+      = f.button :submit, I18n.t('devise.unlocks.resend_instructions'), class: 'btn btn-primary px-5'
   = render "devise/shared/links"
 = render "devise/shared/form_wrapper"

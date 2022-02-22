@@ -30,4 +30,79 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: about 1 hour
+        other: about %{count} hours
+      about_x_months:
+        one: about 1 month
+        other: about %{count} months
+      about_x_years:
+        one: about 1 year
+        other: about %{count} years
+      almost_x_years:
+        one: almost 1 year
+        other: almost %{count} years
+      half_a_minute: half a minute
+      less_than_x_seconds:
+        one: less than 1 second
+        other: less than %{count} seconds
+      less_than_x_minutes:
+        one: less than a minute
+        other: less than %{count} minutes
+      over_x_years:
+        one: over 1 year
+        other: over %{count} years
+      x_seconds:
+        one: 1 second
+        other: "%{count} seconds"
+      x_minutes:
+        one: 1 minute
+        other: "%{count} minutes"
+      x_days:
+        one: 1 day
+        other: "%{count} days"
+      x_months:
+        one: 1 month
+        other: "%{count} months"
+      x_years:
+        one: 1 year
+        other: "%{count} years"
+  form:
+    hints:
+      leave_it_blank: "leave it blank if you don't want to change it"
+      need_password: 'we need your current password to confirm your changes'
+      characters_minimum: 'characters minimum'
+    labels:
+      new_password: 'New password'
+      confirm_your_new_password: 'Confirm your new password'
+
+    editing_post: 'Editing post'
+    cancel_account: 'Cancel my account'
+    change_your_password: 'Change your password'
+    change_my_password: 'Change my password'
+    forgot_your_password: 'Forgot your password?'
+    send_me_reset_password_instructions: 'Send me reset password instructions'
+    unhappy: 'Unhappy?'
+    waiting_confirmation_for: 'Currently waiting confirmation for:'
+  
+  are_you_shure: 'Are you shure?'
+  ago: 'ago'
+  back: 'Back'
+  create_post: 'Create post'
+  comment: 'Comment'
+  edit: 'Edit'
+  hello: 'Hello'
+  show: 'Show'
+  posts: 'Posts'
+  reply: 'Reply'
+  new_post: 'New Post'
+  no_comments_yet: 'No comments yet...'
+  home: 'Home'
+  or: 'or'
+  to_comment: 'to comment.'
+  update: 'Update'
+  unlock_account: 'Unlock account'
+  was_edited: 'was edited'
+  welcome: 'Welcome'

@@ -6,6 +6,10 @@ en:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+      confirm_my_account: 'Confirm my account'
+      you_can_confirm_account_email: 'You can confirm your account email through the link below:'
+      did_not_receive_instructions: "Didn't receive confirmation instructions?"
+
     failure:
       already_authenticated: "You are already signed in."
       inactive: "Your account is not activated yet."
@@ -27,6 +31,15 @@ en:
         subject: "Email Changed"
       password_change:
         subject: "Password Changed"
+      notify:
+        email_is_being_changed_to: "We're contacting you to notify you that your email is being changed to"
+        password_has_been_changed: "We're contacting you to notify you that your password has been changed."
+        someone_has_requested_to_change_password: 'Someone has requested a link to change your password. You can do this through the link below.'
+        if_you_did_not_request_ignore_this_email: "If you didn't request this, please ignore this email."
+        password_will_not_change_until: "Your password won't change until you access the link above and create a new one."
+        account_has_been_locked: 'Your account has been locked due to an excessive number of unsuccessful sign in attempts.'
+        unlock_account: 'Click the link below to unlock your account:'
+
     omniauth_callbacks:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."
@@ -36,6 +49,7 @@ en:
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
       updated: "Your password has been changed successfully. You are now signed in."
       updated_not_active: "Your password has been changed successfully."
+      forgot: 'Forgot your password?'
     registrations:
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."
@@ -49,10 +63,16 @@ en:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
+      sign_in: 'Sign in'
+      sign_in_with: 'Sign in with'
+      logout: 'Logout'
+      sing_up: 'Sign up'
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
       unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+      resend_instructions: "Resend unlock instructions"
+      did_not_receive_instructions: "Didn't receive unlock instructions?"
   errors:
     messages:
       already_confirmed: "was already confirmed, please try signing in"

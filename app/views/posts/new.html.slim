@@ -1,4 +1,4 @@
 h1.mt-5
-  | New Post
+  = I18n.t('new_post')
 = render 'form', post: @post
-= link_to 'Back', posts_path
+= link_to I18n.t('back'), posts_path

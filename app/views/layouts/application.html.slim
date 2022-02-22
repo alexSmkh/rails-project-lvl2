@@ -28,18 +28,18 @@ html
           - if user_signed_in?
             = link_to new_post_path, class: 'btn btn-light me-2 text-primary' do
               i.fa-solid.fa-plus.me-2
-              span Create Post
+              span = I18n.t('create_post')
 
-            = link_to destroy_user_session_path, method: :delete, class: 'btn btn-outline-secondary', data: { confirm: 'Are you sure?' } do
+            = link_to destroy_user_session_path, method: :delete, class: 'btn btn-outline-secondary', data: { confirm: I18n.t('are_you_shure') } do
               i.fa-solid.fa-arrow-right-from-bracket.me-2 
-              span Logout
+              span = I18n.t('devise.sessions.logout')
           - else
             = link_to user_session_path, class: 'btn btn-primary me-2' do
               i.fa-solid.fa-arrow-right-to-bracket.me-2
-              span Sign In
+              span = I18n.t('devise.sessions.sing_in')
             = link_to new_user_registration_path, class: 'btn btn-outline-secondary' do
               i.fa-solid.fa-user-plus.me-2
-              span Sing Up
+              span = I18n.t('devise.sessions.sing_up')
 
     main.flex-grow-1.container
       = yield

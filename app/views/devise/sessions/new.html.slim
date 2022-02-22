@@ -1,6 +1,6 @@
 = content_for :form_content do
   h2.fs-2.text.fw-bolder.text-center.mb-4
-    | Log In
+    = I18n.t('devise.sessions.sign_in')
   = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     = f.error_notification
     .form-inputs.mb-2
@@ -13,6 +13,6 @@
                 input_html: { autocomplete: "current-password" }
       = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
     .form-actions.mb-2
-      = f.button :submit, "Log in", class: 'btn btn-primary px-5'
+      = f.button :submit, I18n.t('devise.sessions.sign_in'), class: 'btn btn-primary px-5'
   = render "devise/shared/links"
 = render "devise/shared/form_wrapper"

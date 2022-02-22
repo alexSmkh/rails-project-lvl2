@@ -1,7 +1,7 @@
 = content_for :form_content do
 
   h2.fs-2.text.fw-bolder.text-center.mb-4
-    | Resend unlock instructions
+    = I18n.t('devise.unlocks.resend_instructions')
   = simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
     = f.error_notification
     = f.full_error :unlock_token
@@ -11,6 +11,6 @@
         autofocus: true,
         input_html: { autocomplete: "email" }
     .form-actions
-      = f.button :submit, "Resend unlock instructions", class: "btn btn-primary"
+      = f.button :submit, I18n.t('devise.unlocks.resend_instructions'), class: "btn btn-primary"
   = render "devise/shared/links"
 = render "devise/shared/form_wrapper"

@@ -1,10 +1,10 @@
 p
-  | Hello 
+  = I18n.t('hello')
   = @resource.email
   | !
 p
-  | Your account has been locked due to an excessive number of unsuccessful sign in attempts.
+  = I18n.t('devise.mailer.notify.account_has_been_locked')
 p
-  | Click the link below to unlock your account:
+  = I18n.t('devise.mailer.notify.unlock_account')
 p
-  = link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token)
+  = link_to I18n.t('unlock_account'), unlock_url(@resource, unlock_token: @token)

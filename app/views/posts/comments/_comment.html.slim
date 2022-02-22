@@ -9,16 +9,16 @@
         - if author_of(comment)
           = link_to edit_comment_path(comment) do
             i.fa-solid.fa-pen.fa-xs.link-secondary.mx-2
-          = link_to comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } do
+          = link_to comment_path(comment), method: :delete, data: { confirm: I18n.t('are_you_sure') } do
             i.fa-regular.fa-trash-can.fa-xs.link-secondary
     p.text-secondary.fst-italic.fw-lighter.fs-8.
       - if comment.created_at != comment.updated_at
-        | was edited 
+        = " #{I18n.t('was_edited')}"
         = time_ago_in_words(comment.updated_at)
-        |  ago
+        = " #{I18n.t('ago')}"
       - else 
         = time_ago_in_words(comment.created_at)
-        |  ago
+        = " #{I18n.t('ago')}"
   p.pe-2
     = comment.content
   

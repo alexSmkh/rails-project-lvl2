@@ -1,8 +1,8 @@
 p
-  | Welcome 
+  = I18n.t('welcome')
   = @email
   | !
 p
-  | You can confirm your account email through the link below:
+  = I18n.t('devise.confirmation.you_can_confirm_account_email')
 p
-  = link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
+  = link_to I18n.t('devise.confirmation.confirm_my_account'), confirmation_url(@resource, confirmation_token: @token)

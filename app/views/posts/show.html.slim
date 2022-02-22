@@ -2,7 +2,7 @@
   nav.mb-5[aria-label='breadcrumb']
     ol.breadcrumb.fs-5
       li.breadcrumb-item
-        = link_to 'Home', root_path
+        = link_to I18n.t('home'), root_path
       li.breadcrumb-item.active[aria-current="page"]
         = @post.category.name.capitalize
 
@@ -13,7 +13,7 @@
       i.fa-regular.fa-calendar.me-2.text-primary
       span.text-secondary.fst-italic.fw-lighter
         = time_ago_in_words(@post.created_at)
-        |  ago
+        = " #{I18n.t('ago')}"
   p.mb-4 
     = @post.body
 
@@ -32,28 +32,29 @@
             = link_to edit_post_path(@post) do
               i.fa-solid.fa-pen.link-secondary
           .ms-2
-            = link_to post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } do
+            = link_to post_path(@post), method: :delete, data: { confirm: I18n.t('are_you_shure') } do
               i.fa-regular.fa-trash-can.link-secondary
   
   div.mb-2
     i.fa-regular.fa-comments.text-warning.me-2
-    = pluralize(@post.comments.count, 'Comment')
+    = pluralize(@post.comments.count, I18n.t('comment'))
     
   
   - if user_signed_in?
     .mb-4
-      = render 'posts/comments/form', model: @comment, path: post_comments_path(@post), parent_id: nil, submit_value: 'Comment'
+      = render 'posts/comments/form', model: @comment, path: post_comments_path(@post), parent_id: nil, submit_value: I18n.t('comment')
   - else
     .mb-4
-      = link_to 'Login', new_user_session_path
-      |  or 
-      = link_to 'Sign up', new_user_registration_path
-      |  to comment.
+      = link_to I18n.t('devise.sessions.sing_in'), new_user_session_path
+      = " #{I18n.t('or')}" 
+      = link_to I18n.t('devise.sessions.sing_up'), new_user_registration_path
+      = " #{I18n.t('to_comment')}"
 
   .d-flex.flex-column
     - if @post.comments.any?
       - @post.comments.roots.each do |comment|
         = render 'posts/comments/comment', comment: comment, post: @post
     - else
-      p.mt-4.fs-5 No comments yet...
+      p.mt-4.fs-5
+        = I18n.t('no_comments_yet')
 

@@ -1,22 +1,22 @@
 = content_for :form_content do
   h2.fs-2.text.fw-bolder.text-center.mb-4
-    | Change your password
+    = I18n.t('form.change_your_password')
   = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
     = f.error_notification
     = f.input :reset_password_token, as: :hidden
     = f.full_error :reset_password_token
     .form-inputs.mb-2
       = f.input :password,
-        label: "New password",
+        label: I18n.t('form.labels.new_password'),
         required: true,
         autofocus: true,
-        hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+        hint: ("#{@minimum_password_length} #{I18n.t('characters_minimum')}" if @minimum_password_length),
         input_html: { autocomplete: "new-password" }
       = f.input :password_confirmation,
-        label: "Confirm your new password",
+        label: I18n.t('confirm_your_new_password'),
         required: true,
         input_html: { autocomplete: "new-password" }
     .form-actions.mb-2
-      = f.button :submit, "Change my password", class: 'btn btn-primary px-5'
+      = f.button :submit, I18n.t('change_my_password'), class: 'btn btn-primary px-5'
   = render "devise/shared/links"
 = render "devise/shared/form_wrapper"
