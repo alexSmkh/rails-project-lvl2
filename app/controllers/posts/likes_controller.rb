@@ -2,9 +2,9 @@
 
 class Posts::LikesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_post, only: %i[create destroy]
 
   def create
-    @post = Post.find(params[:post_id])
     @like = @post.likes.build(like_params)
     @like.user = current_user
 
@@ -27,6 +27,10 @@ class Posts::LikesController < ApplicationController
   end
 
   private
+
+  def set_post
+    @post = Post.find(params[:post_id])
+  end
 
   def like_params
     params.permit(:post_id)

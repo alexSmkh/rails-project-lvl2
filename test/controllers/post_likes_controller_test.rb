@@ -32,7 +32,7 @@ class Posts::LikesControllerTest < ActionDispatch::IntegrationTest
   test 'should destroy like' do
     start_request_page = post_url(@post)
     assert_difference('@post.likes.count', -1) do
-      delete like_path(@like), headers: { HTTP_REFERER: start_request_page }
+      delete post_like_path(@post, @like), headers: { HTTP_REFERER: start_request_page }
     end
 
     assert_redirected_to start_request_page
