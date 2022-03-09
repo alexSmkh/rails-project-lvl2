@@ -7,7 +7,7 @@ class Posts::CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
-    @comment.creator = current_user
+    @comment.user = current_user
 
     respond_to do |format|
       if @comment.save
@@ -34,9 +34,9 @@ class Posts::CommentsController < ApplicationController
   end
 
   def destroy
-    post = @comment.post
+    post_id = @comment.post_id
     @comment.destroy
-    redirect_to post_path(post)
+    redirect_to post_path(post_id)
   end
 
   private
