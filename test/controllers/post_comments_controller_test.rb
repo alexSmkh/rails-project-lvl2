@@ -17,7 +17,7 @@ class Posts::CommentsControllerTest < ActionDispatch::IntegrationTest
       post post_comments_path(@post),
            params: {
              post_comment: {
-               content: 'text'
+               content: Faker::Lorem.sentence
              }
            }
     end
@@ -30,7 +30,7 @@ class Posts::CommentsControllerTest < ActionDispatch::IntegrationTest
       post post_comments_path(@post),
            params: {
              post_comment: {
-               content: 'text',
+               content: Faker::Lorem.sentence,
                parent_id: @comment.id
              }
            }
@@ -46,14 +46,14 @@ class Posts::CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update comment' do
-    updated_content = 'updated text'
+    updated_content = Faker::Lorem.sentence
     patch comment_path(@comment), params: {
       post_comment: {
         content: updated_content
       }
     }
 
-    assert_redirected_to post_path(@comment.post)
+    assert_redirected_to post_path(@post)
 
     @comment.reload
 
@@ -61,21 +61,20 @@ class Posts::CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should destroy comment' do
-    post = @comment.post
     assert_difference('@post.comments.count', -1) do
       delete comment_path(@comment)
     end
 
-    assert_redirected_to post_path(post)
+    assert_redirected_to post_path(@post)
   end
 
   test 'should destroy the child comments along with the parent comment' do
     comment_with_children = post_comments(:one)
-    post = comment_with_children.post
+    post_id = comment_with_children.post.id
     assert_difference('@post.comments.count', -2) do
       delete comment_path(comment_with_children)
     end
 
-    assert_redirected_to post_path(post)
+    assert_redirected_to post_path(post_id)
   end
 end

@@ -8,6 +8,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @post = posts(:one)
     @user = users(:one)
+    @category = post_categories(:one)
     sign_in @user
   end
 
@@ -25,9 +26,10 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Post.count') do
       post posts_url, params: {
         post: {
-          body: @post.body,
-          post_category_id: @post.post_category_id,
-          title: @post.title, user_id: @post.user_id
+          body: Faker::Lorem.sentence,
+          post_category_id: @category.id,
+          title: Faker::Lorem.word,
+          user_id: @user.id
         }
       }
     end
@@ -48,10 +50,10 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test 'should update post' do
     patch post_url(@post), params: {
       post: {
-        body: @post.body,
-        post_category_id: @post.post_category_id,
-        title: @post.title,
-        user_id: @post.user_id
+        body: Faker::Lorem.sentence,
+        post_category_id: @category.id,
+        title: Faker::Lorem.word,
+        user_id: @user.id
       }
     }
     assert_redirected_to post_url(@post)

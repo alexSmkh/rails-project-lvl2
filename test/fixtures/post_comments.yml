@@ -3,20 +3,18 @@
 one:
   id: 1
   content: MyText
-  user_id: 1
-  post_id: 1
+  user: one
   ancestry:
+  post: one
 
 two:
-  id: 2
   content: MyText
-  user_id: 1
-  post_id: 1
+  user: one
   ancestry: 
+  post: one
 
 three:
-  id: 3
   content: MyText
-  user_id: 1
-  post_id: 1
+  user: one
   ancestry: 1
+  post: one

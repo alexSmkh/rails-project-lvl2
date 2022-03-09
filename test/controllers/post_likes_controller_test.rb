@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class Post::LikesControllerTest < ActionDispatch::IntegrationTest
+class Posts::LikesControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   def setup
