@@ -7,4 +7,5 @@ p
 p
   = I18n.t('devise.mailer.notify.unlock_account')
 p
-  = link_to I18n.t('unlock_account'), unlock_url(@resource, unlock_token: @token)
+  = link_to I18n.t('unlock_account'),
+    unlock_url(@resource, unlock_token: @token)

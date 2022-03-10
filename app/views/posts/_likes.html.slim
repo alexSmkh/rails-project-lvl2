@@ -4,7 +4,7 @@ div
     = link_to post_like_path(post, user_like), method: :delete do
       i.fa-solid.fa-heart.text-danger.me-1
   - else
-    = link_to post_likes_path(post), method: :post do 
+    = link_to post_likes_path(post), method: :post do
       i.fa-regular.fa-heart.text-danger.me-1
   span.text-secondary.fw-lighter
     = post.likes.count

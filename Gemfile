@@ -26,11 +26,13 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
+gem 'ancestry', '~> 4.1'
 gem 'bootsnap', '>= 1.4.4', require: false
-
-gem 'rollbar'
-
 gem 'devise'
+gem 'rollbar'
+gem 'simple_form', '~> 5.1'
+gem 'slim', '~> 4.1'
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :production do
   gem 'pg'
@@ -42,6 +44,12 @@ group :development, :test do
 
   gem 'faker'
   gem 'sqlite3', '~> 1.4'
+
+  # Linters
+  gem 'rubocop', '~> 1.26'
+  gem 'rubocop-performance', '~> 1.13'
+  gem 'rubocop-rails', '~> 2.13'
+  gem 'slim_lint', '~> 0.22.1'
 end
 
 group :development do
@@ -56,11 +64,6 @@ group :development do
   gem 'spring'
 
   gem 'prettier', '~> 2.0'
-
-  # Linters
-  gem 'rubocop-performance', require: false
-  gem 'rubocop-rails', require: false
-  gem 'slim_lint'
 end
 
 group :test do
@@ -73,12 +76,3 @@ group :test do
 
   gem 'minitest-power_assert'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-gem 'simple_form', '~> 5.1'
-
-gem 'ancestry', '~> 4.1'
-
-gem 'slim', '~> 4.1'

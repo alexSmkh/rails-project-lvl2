@@ -4,11 +4,11 @@ p
   | !
 - if @resource.try(:unconfirmed_email?)
   p
-    = I18n.t('devise.mailer.notify.email_is_being_changed_to') 
+    = I18n.t('devise.mailer.notify.email_is_being_changed_to')
     = @resource.unconfirmed_email
     | .
 - else
   p
-    = I18n.t('devise.mailer.notify.email_is_being_changed_to') 
+    = I18n.t('devise.mailer.notify.email_is_being_changed_to')
     = @resource.email
     | .

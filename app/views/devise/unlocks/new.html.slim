@@ -9,8 +9,10 @@
       = f.input :email,
         required: true,
         autofocus: true,
-        input_html: { autocomplete: "email" }
+        input_html: { autocomplete: 'email' }
     .form-actions
-      = f.button :submit, I18n.t('devise.unlocks.resend_instructions'), class: "btn btn-primary"
-  = render "devise/shared/links"
-= render "devise/shared/form_wrapper"
+      = f.button :submit,
+        I18n.t('devise.unlocks.resend_instructions'),
+        class: 'btn btn-primary'
+  = render 'devise/shared/links'
+= render 'devise/shared/form_wrapper'

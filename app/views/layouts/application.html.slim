@@ -6,17 +6,18 @@ html
     meta[name="viewport" content="width=device-width,initial-scale=1"]
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'application',
+      media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  
+
   body.d-flex.flex-column.vh-100
     - if flash[:notice].present?
-        div.alert.alert-primary
+        .alert.alert-primary
           = notice
 
     - if flash[:alert].present?
-        div.alert.alert-danger
+        .alert.alert-danger
           = alert
 
     header.border-bottom.shadow-sm
@@ -30,14 +31,18 @@ html
               i.fa-solid.fa-plus.me-2
               span = I18n.t('create_post')
 
-            = link_to destroy_user_session_path, method: :delete, class: 'btn btn-outline-secondary', data: { confirm: I18n.t('are_you_shure') } do
-              i.fa-solid.fa-arrow-right-from-bracket.me-2 
+            = link_to destroy_user_session_path,
+              method: :delete,
+              class: 'btn btn-outline-secondary',
+              data: { confirm: I18n.t('are_you_shure') } do
+              i.fa-solid.fa-arrow-right-from-bracket.me-2
               span = I18n.t('devise.sessions.logout')
           - else
             = link_to user_session_path, class: 'btn btn-primary me-2' do
               i.fa-solid.fa-arrow-right-to-bracket.me-2
               span = I18n.t('devise.sessions.sing_in')
-            = link_to new_user_registration_path, class: 'btn btn-outline-secondary' do
+            = link_to new_user_registration_path,
+              class: 'btn btn-outline-secondary' do
               i.fa-solid.fa-user-plus.me-2
               span = I18n.t('devise.sessions.sing_up')
 
@@ -45,6 +50,6 @@ html
       = yield
 
     footer.footer.mt-auto.py-3.bg-light.border-top.shadow
-      div.container.text-center
+      .container.text-center
         = link_to 'https://github.com/alexSmkh' do
           i.fa-brands.fa-github.fa-xl.text-secondary

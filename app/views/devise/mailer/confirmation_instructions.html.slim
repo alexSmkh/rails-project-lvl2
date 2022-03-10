@@ -5,4 +5,5 @@ p
 p
   = I18n.t('devise.confirmation.you_can_confirm_account_email')
 p
-  = link_to I18n.t('devise.confirmation.confirm_my_account'), confirmation_url(@resource, confirmation_token: @token)
+  = link_to I18n.t('devise.confirmation.confirm_my_account'),
+    confirmation_url(@resource, confirmation_token: @token)

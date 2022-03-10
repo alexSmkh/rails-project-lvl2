@@ -1,21 +1,25 @@
 = content_for :form_content
   h2.fs-2.text.fw-bolder.text-center.mb-4
     = I18n.t('devise.sessions.sign_up')
-  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = simple_form_for(resource,
+    as: resource_name,
+    url: registration_path(resource_name)) do |f|
     = f.error_notification
     .form-inputs.mb-2
       = f.input :email,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "email" }
+                input_html: { autocomplete: 'email' }
       = f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" }
+                input_html: { autocomplete: 'new-password' }
       = f.input :password_confirmation,
                 required: true,
-                input_html: { autocomplete: "new-password" }
+                input_html: { autocomplete: 'new-password' }
     .form-actions
-      = f.button :submit, I18n.t('devise.sessions.sign_up'), class: "btn btn-primary px-4"
-  = render "devise/shared/links"
-= render "devise/shared/form_wrapper"
+      = f.button :submit,
+        I18n.t('devise.sessions.sign_up'),
+        class: 'btn btn-primary px-4'
+  = render 'devise/shared/links'
+= render 'devise/shared/form_wrapper'
