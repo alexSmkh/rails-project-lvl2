@@ -8,14 +8,10 @@ class Posts::LikesController < ApplicationController
     @like = @post.likes.build(like_params)
     @like.user = current_user
 
-    respond_to do |format|
-      if @like.save
-        format.html { redirect_back fallback_location: root_path }
-        format.json { render json: @like, status: :created, location: @like }
-      else
-        format.html { redirect_back fallback_location: root_path, alert: 'Something was wrong. Please, try again' }
-        format.json { render json: @like.errors, status: :unprocessable_entity }
-      end
+    if @like.save
+      redirect_back fallback_location: root_path
+    else
+      redirect_back fallback_location: root_path, alert: 'Something was wrong. Please, try again'
     end
   end
 

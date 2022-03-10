@@ -9,27 +9,20 @@ class Posts::CommentsController < ApplicationController
     @comment = @post.comments.build(comment_params)
     @comment.user = current_user
 
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to post_path(@post), notice: 'Comment was successfully created.' }
-        format.json { render json: @comment, status: :created, location: @comment }
-      else
-        format.html { redirect_to post_path(@post), alert: @comment.errors }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
+    if @comment.save
+      redirect_to post_path(@post), notice: 'Comment was successfully created.'
+    else
+      redirect_to post_path(@post), alert: @comment.errors
     end
   end
 
   def edit; end
 
   def update
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.html { redirect_to post_path(@comment.post), notice: 'Comment was successfully updated' }
-      else
-        format.html { render :edit }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
+    if @comment.update(comment_params)
+      redirect_to post_path(@comment.post), notice: 'Comment was successfully updated'
+    else
+      render :edit
     end
   end
 
