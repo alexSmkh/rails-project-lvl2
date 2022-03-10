@@ -19,15 +19,21 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to post_url(@post), notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.save
+      redirect_to post_path(@post)
+    else
+      render :new
     end
+
+    # respond_to do |format|
+    #   if @post.save
+    #     format.html { redirect_to post_url(@post), notice: 'Post was successfully created.' }
+    #     format.json { render :show, status: :created, location: @post }
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #     format.json { render json: @post.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   def edit; end
