@@ -40,11 +40,11 @@ html
           - else
             = link_to user_session_path, class: 'btn btn-primary me-2' do
               i.fa-solid.fa-arrow-right-to-bracket.me-2
-              span = I18n.t('devise.sessions.sing_in')
+              span = I18n.t('devise.sessions.sign_in')
             = link_to new_user_registration_path,
               class: 'btn btn-outline-secondary' do
               i.fa-solid.fa-user-plus.me-2
-              span = I18n.t('devise.sessions.sing_up')
+              span = I18n.t('devise.sessions.sign_up')
 
     main.flex-grow-1.container
       = yield
