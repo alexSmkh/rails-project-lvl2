@@ -12,7 +12,9 @@ class Posts::CommentsController < ApplicationController
     if @comment.save
       redirect_to post_path(@post), notice: 'Comment was successfully created.'
     else
-      redirect_to post_path(@post), alert: @comment.errors
+      error_messages = @comment.errors.full_messages.map { |msg| "<li>#{msg}</li>" }.join
+      alert_content = "<ul>#{error_messages}</ul>"
+      redirect_to post_path(@post), alert: alert_content
     end
   end
 
