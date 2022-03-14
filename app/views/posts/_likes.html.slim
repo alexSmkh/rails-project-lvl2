@@ -1,10 +1,19 @@
 - user_like = get_user_post_like(post)
-div
+
+.d-flex.align-items-center
   - if user_like
-    = link_to post_like_path(post, user_like), method: :delete do
-      i.fa-solid.fa-heart.text-danger.me-1
+      = button_to post_like_path(post, user_like),
+                type: 'button',
+                class: 'btn btn-outline-light pe-1',
+                method: :delete,
+                data: { disable_with: render('shared/loading_spinner', color: 'text-danger', margins: 'me-1') } do
+        i.fa-solid.fa-heart.text-danger.me-1
   - else
-    = link_to post_likes_path(post), method: :post do
-      i.fa-regular.fa-heart.text-danger.me-1
+      = button_to post_likes_path(post),
+                  type: 'button',
+                  class: 'btn btn-outline-light pe-1',
+                  method: :post,
+                  data: { disable_with: render('shared/loading_spinner', color: 'text-danger', margins: 'me-1') } do
+        i.fa-regular.fa-heart.text-danger.me-1
   span.text-secondary.fw-lighter
     = post.likes.count
