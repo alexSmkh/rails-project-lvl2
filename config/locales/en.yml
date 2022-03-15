@@ -87,6 +87,10 @@ en:
     unhappy: 'Unhappy?'
     waiting_confirmation_for: 'Currently waiting confirmation for:'
   
+  errors:
+    too_long: '%{count} characters is the maximum allowed'
+    too_short: '%{count} characters is the minimum allowed'
+
   are_you_sure: 'Are you shure?'
   ago: 'ago'
   back: 'Back'

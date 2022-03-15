@@ -11,7 +11,7 @@ class PostComment < ApplicationRecord
             length: {
               minimum: 2,
               maximum: 3000,
-              too_long: '%<count>s characters is the maximum allowed',
-              too_short: '%<count>s characters is the minimum allowed'
+              too_long: ->(_, err) { I18n.t('errors.too_long', count: err[:count]) },
+              too_short: ->(_, err) { I18n.t('errors.too_short', count: err[:count]) }
             }
 end
