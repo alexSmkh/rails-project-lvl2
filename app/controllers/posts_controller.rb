@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to post_path(@post), notice: 'Post was successfully created.'
+      redirect_to post_path(@post), notice: I18n.t('notice.entity_created', entity: 'Post')
     else
       render :new
     end
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: 'Post was successfully updated.'
+      redirect_to post_path(@post), notice: I18n.t('notice.entity_updated', entity: 'Post')
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_path, notice: 'Post was successfully destroyed.'
+    redirect_to posts_path, notice: I18n.t('notice.entity_destroyed', entity: 'Post')
   end
 
   private

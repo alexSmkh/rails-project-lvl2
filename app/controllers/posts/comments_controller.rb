@@ -10,7 +10,7 @@ class Posts::CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to post_path(@post), notice: 'Comment was successfully created.'
+      redirect_to post_path(@post), notice: I18n.t('notice.entity_created', entity: 'Comment')
     else
       error_messages = @comment.errors.full_messages.map { |msg| "<li>#{msg}</li>" }.join
       alert_content = "<ul>#{error_messages}</ul>"
@@ -22,7 +22,7 @@ class Posts::CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to post_path(@comment.post), notice: 'Comment was successfully updated'
+      redirect_to post_path(@comment.post), notice: I18n.t('notice.entity_updated', entity: 'Comment')
     else
       render :edit
     end
@@ -31,7 +31,7 @@ class Posts::CommentsController < ApplicationController
   def destroy
     post_id = @comment.post_id
     @comment.destroy
-    redirect_to post_path(post_id)
+    redirect_to post_path(post_id), notice: I18n.t('notice.entity_destroyed', entity: 'Comment')
   end
 
   private

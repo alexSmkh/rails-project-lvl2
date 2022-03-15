@@ -91,6 +91,11 @@ en:
     too_long: '%{count} characters is the maximum allowed'
     too_short: '%{count} characters is the minimum allowed'
 
+  notice:
+    entity_created: '%{entity} was successfully created.'
+    entity_updated: '%{entity} was successfully updated.'
+    entity_destroyed: '%{entity} was successfully destroyed.'
+
   are_you_sure: 'Are you shure?'
   ago: 'ago'
   back: 'Back'
