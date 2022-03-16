@@ -90,6 +90,7 @@ en:
   errors:
     too_long: '%{count} characters is the maximum allowed'
     too_short: '%{count} characters is the minimum allowed'
+    permission: 'You do not have permission to do that.'
 
   notice:
     entity_created: '%{entity} was successfully created.'

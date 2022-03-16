@@ -3,6 +3,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_post, only: %i[show edit update destroy]
+  before_action :require_permission, only: %i[edit update destroy]
 
   def index
     @posts = Post.order(created_at: :desc)
@@ -42,6 +43,11 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def require_permission
+    redirect_back fallback_location: post_path(params[:id]), alert: I18n.t('errors.permission') \
+    unless Post.find(params[:id]).creator == current_user
+  end
 
   def set_post
     @post = Post.find(params[:id])
