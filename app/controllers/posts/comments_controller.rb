@@ -3,6 +3,7 @@
 class Posts::CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_comment, only: %i[edit update destroy]
+  before_action :require_permission, only: %i[edit update destroy]
 
   def create
     @post = Post.find(params[:post_id])
@@ -38,6 +39,11 @@ class Posts::CommentsController < ApplicationController
 
   def set_comment
     @comment = PostComment.find(params[:id])
+  end
+
+  def require_permission
+    redirect_back fallback_location: post_path(@comment.post), alert: I18n.t('errors.permission') \
+    unless PostComment.find(params[:id]).user == current_user
   end
 
   def comment_params
