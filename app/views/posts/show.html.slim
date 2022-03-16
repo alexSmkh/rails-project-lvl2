@@ -33,8 +33,9 @@
               i.fa-solid.fa-pen.link-secondary
           .ms-2
             = link_to post_path(@post),
-              method: :delete, data: { confirm: I18n.t('are_you_shure') } do
+              method: :delete, data: { confirm: I18n.t('are_you_sure') } do
               i.fa-regular.fa-trash-can.link-secondary
+
   .mb-2
     i.fa-regular.fa-comments.text-warning.me-2
     = pluralize(@post.comments.count, I18n.t('comment'))

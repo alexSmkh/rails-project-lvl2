@@ -34,7 +34,7 @@ html
             = link_to destroy_user_session_path,
               method: :delete,
               class: 'btn btn-outline-secondary',
-              data: { confirm: I18n.t('are_you_shure') } do
+              data: { confirm: I18n.t('are_you_sure') } do
               i.fa-solid.fa-arrow-right-from-bracket.me-2
               span = I18n.t('devise.sessions.logout')
           - else

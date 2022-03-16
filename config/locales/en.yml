@@ -96,7 +96,7 @@ en:
     entity_updated: '%{entity} was successfully updated.'
     entity_destroyed: '%{entity} was successfully destroyed.'
 
-  are_you_sure: 'Are you shure?'
+  are_you_sure: 'Are you sure?'
   ago: 'ago'
   back: 'Back'
   comment: 'Comment'
