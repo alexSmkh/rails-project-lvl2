@@ -69,6 +69,7 @@ en:
       x_years:
         one: 1 year
         other: "%{count} years"
+
   form:
     hints:
       leave_it_blank: "leave it blank if you don't want to change it"

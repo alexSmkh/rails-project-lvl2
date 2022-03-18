@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  include Pagy::Backend
+
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_post, only: %i[show edit update destroy]
   before_action :require_permission, only: %i[edit update destroy]
 
   def index
-    @posts = Post.order(created_at: :desc)
+    @pagy, @posts = pagy(Post.order(created_at: :desc))
   end
 
   def show
