@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2022_02_21_193235) do
     t.string "title"
     t.text "body"
     t.integer "user_id", null: false
-    t.integer "post_category_id", null: false
+    t.integer "post_category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_category_id"], name: "index_posts_on_post_category_id"
