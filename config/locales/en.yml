@@ -89,8 +89,6 @@ en:
     waiting_confirmation_for: 'Currently waiting confirmation for:'
   
   errors:
-    too_long: '%{count} characters is the maximum allowed'
-    too_short: '%{count} characters is the minimum allowed'
     permission: 'You do not have permission to do that.'
 
   notice:
