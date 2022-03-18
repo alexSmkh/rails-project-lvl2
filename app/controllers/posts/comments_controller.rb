@@ -13,9 +13,8 @@ class Posts::CommentsController < ApplicationController
     if @comment.save
       redirect_to post_path(@post), notice: I18n.t('notice.entity_created', entity: 'Comment')
     else
-      error_messages = @comment.errors.full_messages.map { |msg| "<li>#{msg}</li>" }.join
-      alert_content = "<ul>#{error_messages}</ul>"
-      redirect_to post_path(@post), alert: alert_content
+      redirect_to post_path(@post),
+                  alert: build_error_alert(@comment.errors.full_messages)
     end
   end
 
