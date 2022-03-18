@@ -25,6 +25,10 @@ class Posts::LikesControllerTest < ActionDispatch::IntegrationTest
            }
     end
 
+    new_like = PostLike.last
+
+    assert_equal new_like.post.id, @post.id
+    assert_equal new_like.user.id, @user_without_like.id
     assert_redirected_to start_request_page
   end
 
@@ -33,6 +37,10 @@ class Posts::LikesControllerTest < ActionDispatch::IntegrationTest
     start_request_page = post_url(@post)
     assert_difference('@post.likes.count', -1) do
       delete post_like_path(@post, @like), headers: { HTTP_REFERER: start_request_page }
+    end
+
+    assert_raises ActiveRecord::RecordNotFound do
+      PostLike.find(@like.id)
     end
 
     assert_redirected_to start_request_page

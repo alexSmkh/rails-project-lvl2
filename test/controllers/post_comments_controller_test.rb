@@ -13,29 +13,41 @@ class Posts::CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create comment' do
+    content = Faker::Lorem.sentence
     assert_difference('@post.comments.count') do
       post post_comments_path(@post),
            params: {
              post_comment: {
-               content: Faker::Lorem.sentence
+               content: content
              }
            }
     end
 
+    new_comment = PostComment.last
+    assert_equal new_comment.content, content
+    assert_equal new_comment.user.id, @user.id
+    assert_equal new_comment.post.id, @post.id
     assert_redirected_to post_path(@post)
   end
 
   test 'should create a reply to comment' do
+    content = Faker::Lorem.sentence
     assert_difference('@comment.children.count') do
       post post_comments_path(@post),
            params: {
              post_comment: {
-               content: Faker::Lorem.sentence,
+               content: content,
                parent_id: @comment.id
              }
            }
     end
 
+    new_comment = PostComment.last
+
+    assert_equal new_comment.parent.id, @comment.id
+    assert_equal new_comment.content, content
+    assert_equal new_comment.user.id, @user.id
+    assert_equal new_comment.post.id, @post.id
     assert_redirected_to post_path(@post)
   end
 
@@ -57,7 +69,7 @@ class Posts::CommentsControllerTest < ActionDispatch::IntegrationTest
 
     @comment.reload
 
-    assert { @comment.content == updated_content }
+    assert_equal @comment.content, updated_content
   end
 
   test 'should destroy comment' do
@@ -65,14 +77,27 @@ class Posts::CommentsControllerTest < ActionDispatch::IntegrationTest
       delete comment_path(@comment)
     end
 
+    assert_raises ActiveRecord::RecordNotFound do
+      PostComment.find(@comment.id)
+    end
+
     assert_redirected_to post_path(@post)
   end
 
   test 'should destroy the child comments along with the parent comment' do
-    comment_with_children = post_comments(:parent)
-    post_id = comment_with_children.post.id
+    comment_with_child = post_comments(:parent)
+    comment_child = post_comments(:three)
+    post_id = comment_with_child.post.id
     assert_difference('@post.comments.count', -2) do
-      delete comment_path(comment_with_children)
+      delete comment_path(comment_with_child)
+    end
+
+    assert_raises ActiveRecord::RecordNotFound do
+      PostComment.find(comment_with_child.id)
+    end
+
+    assert_raises ActiveRecord::RecordNotFound do
+      PostComment.find(comment_child.id)
     end
 
     assert_redirected_to post_path(post_id)

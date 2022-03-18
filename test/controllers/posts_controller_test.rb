@@ -23,17 +23,25 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create post' do
+    body = Faker::Lorem.sentence
+    title = Faker::Lorem.characters(number: 10)
     assert_difference('Post.count') do
       post posts_url, params: {
         post: {
-          body: Faker::Lorem.sentence,
+          body: body,
           post_category_id: @category.id,
-          title: Faker::Lorem.word,
+          title: title,
           user_id: @user.id
         }
       }
     end
 
+    post = Post.last
+
+    assert_equal post.title, title
+    assert_equal post.body, body
+    assert_equal post.creator.id, @user.id
+    assert_equal post.post_category.id, @category.id
     assert_redirected_to post_url(Post.last)
   end
 
@@ -48,20 +56,32 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update post' do
+    body = Faker::Lorem.sentence
+    title = Faker::Lorem.characters(number: 10)
+
     patch post_url(@post), params: {
       post: {
-        body: Faker::Lorem.sentence,
+        body: body,
         post_category_id: @category.id,
-        title: Faker::Lorem.word,
+        title: title,
         user_id: @user.id
       }
     }
+
+    @post.reload
+
+    assert_equal @post.body, body
+    assert_equal @post.title, title
     assert_redirected_to post_url(@post)
   end
 
   test 'should destroy post' do
     assert_difference('Post.count', -1) do
       delete post_url(@post)
+    end
+
+    assert_raises ActiveRecord::RecordNotFound do
+      Post.find(@post.id)
     end
 
     assert_redirected_to posts_url

@@ -90,7 +90,7 @@ en:
   
   errors:
     permission: 'You do not have permission to do that.'
-    something_was_wrong: 'Something was wrong. Please, try again.'
+    texture: 'Something was wrong. Please, try again.'
 
   notice:
     entity_created: '%{entity} was successfully created.'
