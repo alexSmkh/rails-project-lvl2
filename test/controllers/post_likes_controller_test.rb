@@ -7,19 +7,18 @@ class Posts::LikesControllerTest < ActionDispatch::IntegrationTest
 
   def setup
     @post = posts(:one)
-    @user = users(:one)
+    @user_with_like = users(:one)
+    @user_without_like = users(:two)
     @like = post_likes(:one)
-    sign_in @user
   end
 
-  test 'shoud like create' do
+  test 'shoud create like' do
+    sign_in @user_without_like
     start_request_page = post_url(@post)
     assert_difference('@post.likes.count') do
       post post_likes_path(@post),
            params: {
-             post_like: {
-               post_id: @post.id
-             }
+             post_like: { post_id: @post.id }
            },
            headers: {
              HTTP_REFERER: start_request_page
@@ -30,6 +29,7 @@ class Posts::LikesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should destroy like' do
+    sign_in @user_with_like
     start_request_page = post_url(@post)
     assert_difference('@post.likes.count', -1) do
       delete post_like_path(@post, @like), headers: { HTTP_REFERER: start_request_page }

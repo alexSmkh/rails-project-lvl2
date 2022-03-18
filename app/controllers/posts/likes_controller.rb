@@ -2,33 +2,26 @@
 
 class Posts::LikesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: %i[create destroy]
 
   def create
-    @like = @post.likes.build(like_params)
-    @like.user = current_user
+    @post = Post.find(params[:post_id])
+    return if current_user.likes.where(post_id: @post.id).first
+
+    @like = @post.likes.build(user: current_user)
 
     if @like.save
       redirect_back fallback_location: root_path
     else
-      redirect_back fallback_location: root_path, alert: 'Something was wrong. Please, try again'
+      redirect_back fallback_location: root_path, alert: I18n.t('errors.something_was_wrong')
     end
   end
 
   def destroy
-    @like = PostLike.find(params[:id])
+    @like = current_user.likes.where(id: params[:id], post_id: params[:post_id]).first
+
+    return if @like.nil?
+
     @like.destroy
-
     redirect_back fallback_location: root_path
-  end
-
-  private
-
-  def set_post
-    @post = Post.find(params[:post_id])
-  end
-
-  def like_params
-    params.permit(:post_id)
   end
 end
