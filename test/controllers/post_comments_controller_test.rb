@@ -69,7 +69,7 @@ class Posts::CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should destroy the child comments along with the parent comment' do
-    comment_with_children = post_comments(:one)
+    comment_with_children = post_comments(:parent)
     post_id = comment_with_children.post.id
     assert_difference('@post.comments.count', -2) do
       delete comment_path(comment_with_children)
