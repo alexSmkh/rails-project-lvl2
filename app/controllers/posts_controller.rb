@@ -51,10 +51,10 @@ class PostsController < ApplicationController
   private
 
   def require_permission
-    unless Post.find(params[:id]).creator == current_user
-      redirect_back fallback_location: post_path(params[:id]),
-                    alert: I18n.t('errors.permission')
-    end
+    return if Post.find(params[:id]).creator == current_user
+
+    redirect_back fallback_location: post_path(params[:id]),
+                  alert: I18n.t('errors.permission')
   end
 
   def set_post
