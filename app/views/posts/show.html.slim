@@ -38,7 +38,7 @@
 
   .mb-2
     i.fa-regular.fa-comments.text-warning.me-2
-    = pluralize(@post.comments.count, I18n.t('comment'))
+    = pluralize(@post.post_comments_count, I18n.t('comment'))
   - if user_signed_in?
     .mb-4
       = render 'posts/comments/form',
