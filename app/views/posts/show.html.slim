@@ -46,7 +46,6 @@
         path: post_comments_path(@post),
         parent_id: nil,
         submit_value: I18n.t('comment')
-
   - else
     .mb-4
       = link_to I18n.t('devise.sessions.sign_in'), new_user_session_path
@@ -55,9 +54,9 @@
       = " #{I18n.t('to_comment')}"
 
   .d-flex.flex-column
-    - if @post.comments.any?
-      - @post.comments.roots.each do |comment|
-        = render 'posts/comments/comment', comment: comment, post: @post
+    - if @comments.any?
+      - @comments.each do |comment, children|
+        = render 'posts/comments/comment', comment: comment, post: @post, children: children
     - else
       p.mt-4.fs-5
         = I18n.t('no_comments_yet')

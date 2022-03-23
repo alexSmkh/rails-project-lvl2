@@ -1,2 +1,2 @@
-- comment.children.each do |child|
-  = render 'posts/comments/comment', post: post, comment: child
+- children.each do |comment, ch|
+  = render 'posts/comments/comment', post: post, comment: comment, children: ch
