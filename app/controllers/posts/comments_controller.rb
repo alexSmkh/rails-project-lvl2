@@ -41,8 +41,9 @@ class Posts::CommentsController < ApplicationController
   end
 
   def require_permission
-    redirect_back fallback_location: post_path(@comment.post), alert: I18n.t('errors.permission') \
-    unless PostComment.find(params[:id]).user == current_user
+    return if @comment.user == current_user
+
+    redirect_back fallback_location: post_path(@comment.post), alert: I18n.t('errors.permission')
   end
 
   def comment_params
