@@ -15,15 +15,13 @@ class Posts::LikesControllerTest < ActionDispatch::IntegrationTest
   test 'shoud create like' do
     sign_in @user_without_like
     start_request_page = post_url(@post)
-    assert_difference('@post.likes.count') do
-      post post_likes_path(@post),
-           params: {
-             post_like: { post_id: @post.id }
-           },
-           headers: {
-             HTTP_REFERER: start_request_page
-           }
-    end
+    post post_likes_path(@post),
+         params: {
+           post_like: { post_id: @post.id }
+         },
+         headers: {
+           HTTP_REFERER: start_request_page
+         }
 
     new_like = PostLike.find_by(
       post: @post,

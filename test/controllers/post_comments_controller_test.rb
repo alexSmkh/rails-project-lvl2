@@ -14,14 +14,12 @@ class Posts::CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create comment' do
     content = Faker::Lorem.sentence
-    assert_difference('@post.comments.count') do
-      post post_comments_path(@post),
-           params: {
-             post_comment: {
-               content: content
-             }
+    post post_comments_path(@post),
+         params: {
+           post_comment: {
+             content: content
            }
-    end
+         }
 
     new_comment = PostComment.find_by(
       content: content,
@@ -35,15 +33,13 @@ class Posts::CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create a reply to comment' do
     content = Faker::Lorem.sentence
-    assert_difference('@comment.children.count') do
-      post post_comments_path(@post),
-           params: {
-             post_comment: {
-               content: content,
-               parent_id: @comment.id
-             }
+    post post_comments_path(@post),
+         params: {
+           post_comment: {
+             content: content,
+             parent_id: @comment.id
            }
-    end
+         }
 
     new_comment = PostComment.find_by(
       ancestry: @comment,

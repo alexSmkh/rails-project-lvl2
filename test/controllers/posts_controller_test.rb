@@ -25,16 +25,14 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test 'should create post' do
     body = Faker::Lorem.sentence
     title = Faker::Lorem.characters(number: 10)
-    assert_difference('Post.count') do
-      post posts_url, params: {
-        post: {
-          body: body,
-          post_category_id: @category.id,
-          title: title,
-          user_id: @user.id
-        }
+    post posts_url, params: {
+      post: {
+        body: body,
+        post_category_id: @category.id,
+        title: title,
+        user_id: @user.id
       }
-    end
+    }
 
     post = Post.find_by(
       title: title,
