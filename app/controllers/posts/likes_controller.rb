@@ -5,7 +5,7 @@ class Posts::LikesController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    return if current_user.likes.where(post_id: @post.id).first
+    return if current_user.likes.find_by(post_id: @post.id)
 
     @like = @post.likes.build(user: current_user)
 
@@ -17,7 +17,7 @@ class Posts::LikesController < ApplicationController
   end
 
   def destroy
-    @like = current_user.likes.where(id: params[:id], post_id: params[:post_id]).first
+    @like = current_user.likes.find_by(id: params[:id], post_id: params[:post_id])
 
     return if @like.nil?
 
