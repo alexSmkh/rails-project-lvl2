@@ -23,10 +23,13 @@ class Posts::CommentsControllerTest < ActionDispatch::IntegrationTest
            }
     end
 
-    new_comment = PostComment.last
-    assert_equal new_comment.content, content
-    assert_equal new_comment.user.id, @user.id
-    assert_equal new_comment.post.id, @post.id
+    new_comment = PostComment.find_by(
+      content: content,
+      user: @user,
+      post: @post
+    )
+
+    assert { new_comment }
     assert_redirected_to post_path(@post)
   end
 
@@ -42,12 +45,14 @@ class Posts::CommentsControllerTest < ActionDispatch::IntegrationTest
            }
     end
 
-    new_comment = PostComment.last
+    new_comment = PostComment.find_by(
+      ancestry: @comment,
+      content: content,
+      user: @user,
+      post: @post
+    )
 
-    assert_equal new_comment.parent.id, @comment.id
-    assert_equal new_comment.content, content
-    assert_equal new_comment.user.id, @user.id
-    assert_equal new_comment.post.id, @post.id
+    assert { new_comment }
     assert_redirected_to post_path(@post)
   end
 
@@ -69,7 +74,7 @@ class Posts::CommentsControllerTest < ActionDispatch::IntegrationTest
 
     @comment.reload
 
-    assert_equal @comment.content, updated_content
+    assert { @comment.content == updated_content }
   end
 
   test 'should destroy comment' do

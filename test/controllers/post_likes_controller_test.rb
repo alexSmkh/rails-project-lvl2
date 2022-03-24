@@ -25,10 +25,12 @@ class Posts::LikesControllerTest < ActionDispatch::IntegrationTest
            }
     end
 
-    new_like = PostLike.last
+    new_like = PostLike.find_by(
+      post: @post,
+      user: @user_without_like
+    )
 
-    assert_equal new_like.post.id, @post.id
-    assert_equal new_like.user.id, @user_without_like.id
+    assert { new_like }
     assert_redirected_to start_request_page
   end
 

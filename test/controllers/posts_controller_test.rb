@@ -36,13 +36,14 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       }
     end
 
-    post = Post.last
+    post = Post.find_by(
+      title: title,
+      body: body,
+      creator: @user,
+      post_category: @category
+    )
 
-    assert_equal post.title, title
-    assert_equal post.body, body
-    assert_equal post.creator.id, @user.id
-    assert_equal post.post_category.id, @category.id
-    assert_redirected_to post_url(Post.last)
+    assert { post }
   end
 
   test 'should show post' do
@@ -70,8 +71,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
     @post.reload
 
-    assert_equal @post.body, body
-    assert_equal @post.title, title
+    assert { @post.body == body }
+    assert { @post.title == title }
     assert_redirected_to post_url(@post)
   end
 
