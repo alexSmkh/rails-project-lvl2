@@ -77,13 +77,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should destroy post' do
-    assert_difference('Post.count', -1) do
-      delete post_url(@post)
-    end
+    delete post_url(@post)
 
-    assert_raises ActiveRecord::RecordNotFound do
-      Post.find(@post.id)
-    end
+    refute Post.find_by(id: @post.id)
 
     assert_redirected_to posts_url
   end

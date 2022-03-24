@@ -78,32 +78,22 @@ class Posts::CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should destroy comment' do
-    assert_difference('@post.comments.count', -1) do
-      delete comment_path(@comment)
-    end
+    delete comment_path(@comment)
 
-    assert_raises ActiveRecord::RecordNotFound do
-      PostComment.find(@comment.id)
-    end
+    refute PostComment.find_by(id: @comment.id)
 
     assert_redirected_to post_path(@post)
   end
 
   test 'should destroy the child comments along with the parent comment' do
     comment_with_child = post_comments(:parent)
-    comment_child = post_comments(:three)
+    child = post_comments(:three)
     post_id = comment_with_child.post.id
-    assert_difference('@post.comments.count', -2) do
-      delete comment_path(comment_with_child)
-    end
 
-    assert_raises ActiveRecord::RecordNotFound do
-      PostComment.find(comment_with_child.id)
-    end
+    delete comment_path(comment_with_child)
 
-    assert_raises ActiveRecord::RecordNotFound do
-      PostComment.find(comment_child.id)
-    end
+    refute PostComment.find_by(id: comment_with_child.id)
+    refute PostComment.find_by(id: child.id)
 
     assert_redirected_to post_path(post_id)
   end

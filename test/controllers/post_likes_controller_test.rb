@@ -37,13 +37,9 @@ class Posts::LikesControllerTest < ActionDispatch::IntegrationTest
   test 'should destroy like' do
     sign_in @user_with_like
     start_request_page = post_url(@post)
-    assert_difference('@post.likes.count', -1) do
-      delete post_like_path(@post, @like), headers: { HTTP_REFERER: start_request_page }
-    end
+    delete post_like_path(@post, @like), headers: { HTTP_REFERER: start_request_page }
 
-    assert_raises ActiveRecord::RecordNotFound do
-      PostLike.find(@like.id)
-    end
+    refute PostLike.find_by(id: @like.id)
 
     assert_redirected_to start_request_page
   end
