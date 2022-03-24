@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.includes(:likes, :creator).find(params[:id])
+    @post = Post.includes(:creator).find(params[:id])
     @comments = @post.comments.includes(:user).arrange
     @comment = @post.comments.build
   end
