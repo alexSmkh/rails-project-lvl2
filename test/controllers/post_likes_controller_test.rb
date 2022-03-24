@@ -37,7 +37,7 @@ class Posts::LikesControllerTest < ActionDispatch::IntegrationTest
     start_request_page = post_url(@post)
     delete post_like_path(@post, @like), headers: { HTTP_REFERER: start_request_page }
 
-    refute PostLike.find_by(id: @like.id)
+    assert_not PostLike.find_by(id: @like.id)
 
     assert_redirected_to start_request_page
   end

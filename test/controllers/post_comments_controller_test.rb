@@ -76,8 +76,7 @@ class Posts::CommentsControllerTest < ActionDispatch::IntegrationTest
   test 'should destroy comment' do
     delete comment_path(@comment)
 
-    refute PostComment.find_by(id: @comment.id)
-
+    assert_not PostComment.find_by(id: @comment.id)
     assert_redirected_to post_path(@post)
   end
 
@@ -88,9 +87,8 @@ class Posts::CommentsControllerTest < ActionDispatch::IntegrationTest
 
     delete comment_path(comment_with_child)
 
-    refute PostComment.find_by(id: comment_with_child.id)
-    refute PostComment.find_by(id: child.id)
-
+    assert_not PostComment.find_by(id: comment_with_child.id)
+    assert_not PostComment.find_by(id: child.id)
     assert_redirected_to post_path(post_id)
   end
 end
