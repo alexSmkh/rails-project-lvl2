@@ -13,12 +13,14 @@ html
 
   body.d-flex.flex-column.vh-100
     - if flash[:notice].present?
-        .alert.alert-primary
+        .alert.alert-primary.alert-dismissible.fade.show role='alert'
           = sanitize build_flash(notice)
+          button.btn-close type='button' data-bs-dismiss='alert' area-label='Close'
 
     - if flash[:alert].present?
-        .alert.alert-danger
+        .alert.alert-danger.alert-dismissible.fade.show role='alert'
           = sanitize build_flash(alert)
+          button.btn-close type='button' data-bs-dismiss='alert' area-label='Close'
 
     header.border-bottom.shadow-sm
       nav.d-flex.justify-content-between.align-items-center.py-2.px-4
