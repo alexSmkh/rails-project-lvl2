@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   def index
     @pagy, @posts = pagy(Post.order(created_at: :desc).includes(:creator, :likes))
     @user_liked_posts = @posts.each_with_object({}) do |post, acc|
-      like = post.likes.find { |post_like| post_like.user.id == current_user.id }
+      like = post.likes.find { |post_like| post_like.user.id == current_user&.id }
 
       if like
         acc[post.id] = like.id
@@ -18,7 +18,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.includes(:creator, :likes).find(params[:id])
-    @user_like_id = @post.likes.find { |like| like.user.id == current_user.id }&.id
+    @user_like_id = @post.likes.find { |like| like.user.id == current_user&.id }&.id
     @comments = @post.comments.includes(:user).arrange
     @comment = @post.comments.build
   end
