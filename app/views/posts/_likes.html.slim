@@ -1,8 +1,6 @@
-- user_like = get_user_post_like(post)
-
 .d-flex.align-items-center
-  - if user_like
-      = button_to post_like_path(post, user_like),
+  - if like_id
+      = button_to post_like_path(post, like_id),
                 type: 'button',
                 class: 'btn btn-outline-light pe-1',
                 method: :delete,
