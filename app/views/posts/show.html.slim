@@ -26,7 +26,7 @@
         span.text-secondary.fw-lighter
           = @post.creator.email
 
-    - if author_of(@post)
+    - if policy(@post).update? && policy(@post).destroy?
       .d-flex
           div
             = link_to edit_post_path(@post) do

@@ -28,7 +28,7 @@ html
           i.fa-solid.fa-house
 
         div
-          - if user_signed_in?
+          - if policy(Post).new?
             = link_to new_post_path, class: 'btn btn-light me-2 text-primary' do
               i.fa-solid.fa-plus.me-2
               span = I18n.t('create_post')

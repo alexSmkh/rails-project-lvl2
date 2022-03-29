@@ -30,6 +30,7 @@ gem 'ancestry', '~> 4.1'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'pagy', '~> 5.10'
+gem 'pundit', '~> 2.2'
 gem 'rollbar'
 gem 'simple_form', '~> 5.1'
 gem 'slim', '~> 4.1'
