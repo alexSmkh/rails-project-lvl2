@@ -2,7 +2,6 @@
 
 class Posts::CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_comment, only: %i[edit update destroy]
 
   def create
     @post = Post.find(params[:post_id])
@@ -19,10 +18,12 @@ class Posts::CommentsController < ApplicationController
   end
 
   def edit
+    @comment = PostComment.find(params[:id])
     authorize @comment
   end
 
   def update
+    @comment = PostComment.find(params[:id])
     authorize @comment
 
     if @comment.update(comment_params)
@@ -33,6 +34,7 @@ class Posts::CommentsController < ApplicationController
   end
 
   def destroy
+    @comment = PostComment.find(params[:id])
     authorize @comment
 
     post_id = @comment.post_id
@@ -41,10 +43,6 @@ class Posts::CommentsController < ApplicationController
   end
 
   private
-
-  def set_comment
-    @comment = PostComment.find(params[:id])
-  end
 
   def comment_params
     params.require(:post_comment).permit(:content, :parent_id)

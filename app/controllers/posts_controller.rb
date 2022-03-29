@@ -4,7 +4,6 @@ class PostsController < ApplicationController
   include Pagy::Backend
 
   before_action :authenticate_user!, except: %i[index show]
-  before_action :set_post, only: %i[edit update destroy]
 
   def index
     @pagy, @posts = pagy(Post.order(created_at: :desc).includes(:creator))
@@ -34,10 +33,12 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
     authorize @post
   end
 
   def update
+    @post = Post.find(params[:id])
     authorize @post
 
     if @post.update(post_params)
@@ -49,6 +50,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:id])
     authorize @post
 
     @post.destroy
@@ -57,10 +59,6 @@ class PostsController < ApplicationController
   end
 
   private
-
-  def set_post
-    @post = Post.find(params[:id])
-  end
 
   def post_params
     params.require(:post).permit(:title, :body, :post_category_id)
