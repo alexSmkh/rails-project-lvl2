@@ -14,7 +14,7 @@ class Posts::CommentsController < ApplicationController
       redirect_to post_path(@post), notice: I18n.t('notice.entity_created', entity: 'Comment')
     else
       redirect_to post_path(@post),
-                  alert: build_error_alert(@comment.errors.full_messages)
+                  alert: @comment.errors.full_messages
     end
   end
 

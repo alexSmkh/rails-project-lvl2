@@ -12,7 +12,8 @@ class Posts::LikesController < ApplicationController
     if @like.save
       redirect_back fallback_location: root_path
     else
-      redirect_back fallback_location: root_path, alert: I18n.t('errors.something_was_wrong')
+      redirect_back fallback_location: root_path,
+                    alert: @like.errors.full_messages
     end
   end
 
