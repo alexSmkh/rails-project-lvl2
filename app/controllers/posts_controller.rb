@@ -3,7 +3,7 @@
 class PostsController < ApplicationController
   include Pagy::Backend
 
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
 
   def index
     @pagy, @posts = pagy(Post.order(created_at: :desc).includes(:creator))
