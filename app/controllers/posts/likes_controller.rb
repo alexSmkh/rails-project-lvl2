@@ -8,6 +8,7 @@ class Posts::LikesController < ApplicationController
     return if current_user.likes.find_by(post_id: @post.id)
 
     @like = @post.likes.build(user: current_user)
+    authorize @like
 
     if @like.save
       redirect_back fallback_location: root_path
@@ -21,6 +22,8 @@ class Posts::LikesController < ApplicationController
     @like = current_user.likes.find_by(id: params[:id], post_id: params[:post_id])
 
     return if @like.nil?
+
+    authorize @like
 
     @like.destroy
     redirect_back fallback_location: root_path
