@@ -6,9 +6,11 @@
         span.fs-6.text
           = comment.user.email
       div
-        - if author_of(comment)
+        - if policy(comment).edit?
           = link_to edit_comment_path(comment) do
             i.fa-solid.fa-pen.fa-xs.link-secondary.mx-2
+
+        - if policy(comment).destroy?
           = link_to comment_path(comment),
             method: :delete, data: { confirm: I18n.t('are_you_sure') } do
             i.fa-regular.fa-trash-can.fa-xs.link-secondary
@@ -23,7 +25,7 @@
   p.pe-2
     = comment.content
 
-  - if user_signed_in?
+  - if policy(PostComment).create?
     = render 'posts/comments/reply', comment: comment, post: post
 
   .ps-2

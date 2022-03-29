@@ -39,7 +39,8 @@
   .mb-2
     i.fa-regular.fa-comments.text-warning.me-2
     = pluralize(@post.post_comments_count, I18n.t('comment'))
-  - if user_signed_in?
+
+  - if policy(PostComment).create?
     .mb-4
       = render 'posts/comments/form',
         model: @comment,

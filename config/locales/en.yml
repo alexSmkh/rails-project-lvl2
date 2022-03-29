@@ -79,6 +79,7 @@ en:
       new_password: 'New password'
       confirm_your_new_password: 'Confirm your new password'
 
+    edit_comment: 'Edit comment'
     editing_post: 'Editing post'
     cancel_account: 'Cancel my account'
     change_your_password: 'Change your password'
@@ -87,7 +88,7 @@ en:
     send_me_reset_password_instructions: 'Send me reset password instructions'
     unhappy: 'Unhappy?'
     waiting_confirmation_for: 'Currently waiting confirmation for:'
-  
+
   errors:
     permission: 'You do not have permission to do that.'
     something_was_wrong: 'Something was wrong. Please, try again.'

@@ -3,12 +3,12 @@
 class Posts::CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_comment, only: %i[edit update destroy]
-  before_action :require_permission, only: %i[edit update destroy]
 
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     @comment.user = current_user
+    authorize @comment
 
     if @comment.save
       redirect_to post_path(@post), notice: I18n.t('notice.entity_created', entity: 'Comment')
@@ -18,9 +18,13 @@ class Posts::CommentsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    authorize @comment
+  end
 
   def update
+    authorize @comment
+
     if @comment.update(comment_params)
       redirect_to post_path(@comment.post), notice: I18n.t('notice.entity_updated', entity: 'Comment')
     else
@@ -29,6 +33,8 @@ class Posts::CommentsController < ApplicationController
   end
 
   def destroy
+    authorize @comment
+
     post_id = @comment.post_id
     @comment.destroy
     redirect_to post_path(post_id), notice: I18n.t('notice.entity_destroyed', entity: 'Comment')
@@ -38,12 +44,6 @@ class Posts::CommentsController < ApplicationController
 
   def set_comment
     @comment = PostComment.find(params[:id])
-  end
-
-  def require_permission
-    return if @comment.user == current_user
-
-    redirect_back fallback_location: post_path(@comment.post), alert: I18n.t('errors.permission')
   end
 
   def comment_params
