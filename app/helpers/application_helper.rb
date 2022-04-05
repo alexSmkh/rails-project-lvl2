@@ -2,8 +2,10 @@
 
 module ApplicationHelper
   def build_flash(content)
-    return content.map { |msg| "<p class='mb-0'>#{msg}</p>" }.join if content.instance_of?(Array)
+    if content.instance_of?(Array)
+      return content.map { |msg| tag.p(class: 'mb-0') { msg } }.join
+    end
 
-    "<p class='mb-0'>#{content}</p>"
+    tag.p(class: 'mb-0') { content }
   end
 end
