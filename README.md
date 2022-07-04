@@ -6,6 +6,8 @@
 A simple blog with the ability to publish posts and comments on them
 ## [Demo](https://hexlet-blog.herokuapp.com/)
 
+![](preview.gif)
+
 ### How to install
 ```bash
 bundle install
